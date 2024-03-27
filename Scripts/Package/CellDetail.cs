@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class CellDetail : MonoBehaviour
@@ -38,12 +39,14 @@ public class CellDetail : MonoBehaviour
     {
         Debug.Log(GameManager.Instance.cellTable.DataList[Mood_i].name);//在这使用函数触发事件
         string Mood_name = GameManager.Instance.cellTable.DataList[Mood_i].name;
-        //if (Mood_name == "xxx")
-        //{
-        //     triger        
-        //}
+        if (Mood_name == "木材兄弟的兄弟的兄弟")//在这添加物品事件
+        {
+            EventCenter.Instance.EventTrigger("KeyDia");
+            UIManager.Instance.ClosePanel(UIConst.PackageCon);
+            EventCenter.Instance.EventTrigger("ShowBtn");
+            EventCenter.Instance.EventTrigger("ShowDia");
+        }
     }
-
 
 
 }

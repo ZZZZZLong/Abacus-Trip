@@ -8,10 +8,16 @@ public class TalkButton : MonoBehaviour
 
     public GameObject talkUI;
 
+    private void Awake()
+    {
+        EventCenter.Instance.AddEventListener("ShowDia", ShowDia); 
+    }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         EventCenter.Instance.AddEventListener("HideBtn", HideBtn);
+        EventCenter.Instance.AddEventListener("ShowBtn", ShowBtn);
         Button.SetActive(true);
     }
 
@@ -27,6 +33,13 @@ public class TalkButton : MonoBehaviour
             Button.SetActive(false);
         }
     }
+    void ShowBtn()
+    {
+        if (Button != null)
+        {
+            Button.SetActive(true);
+        }
+    }
 
 
     private void Update()
@@ -38,4 +51,21 @@ public class TalkButton : MonoBehaviour
             talkUI.SetActive(true);
         }
     }
+
+    void ShowDia()
+    {
+        if(this.gameObject.name == "NPC1" && Button.activeSelf)//在这添加NPC触发事件
+        {
+            Debug.Log("我启动了");
+            PlayerMove.ISMove = false;
+            Button.SetActive(false);
+            talkUI.SetActive(true);
+        }
+        else
+        {
+            PlayerMove.ISMove = true;
+        }
+    }
+
+
 }

@@ -18,6 +18,8 @@ public class DialogSystem : MonoBehaviour
     TextAsset textFile;
     public TextAsset textFile_1;
     public TextAsset textFile_2;
+    public TextAsset textFile_3;
+
     public int index;
 
     [Header("头像")]
@@ -30,17 +32,26 @@ public class DialogSystem : MonoBehaviour
     {
         textFile = textFile_1;//初始化
         //设置事件 当触发后切换文本，主要针对剧情SwitchTextFile(textFile_2);带参数事件
-        GetTextFormFile(textFile);
+        EventCenter.Instance.AddEventListener("KeyDia", SwitchKeyTextFile);
+        
     }
     private void OnEnable()
     {
-        
+        GetTextFormFile(textFile);
         textFinished = true;
         StartCoroutine(SetTextUI());
     }
-    void SwitchTextFile(TextAsset file)
+    void SwitchNextTextFile()
     {
-        textFile = file;
+        textFile = textFile_3;
+        //Debug.Log("切换对话为下一个普通对话");
+    }
+
+    void SwitchKeyTextFile()
+    {
+        textFile = textFile_2;
+        Debug.Log("切换对话为关键剧情对话对话");
+
     }
     
 
@@ -49,6 +60,11 @@ public class DialogSystem : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && index == textList.Count)
         {
             gameObject.SetActive(false);//脚本挂在panel上 当前挂在的对象消失= 文本框消失
+            
+            if(textFile_3 != null)
+            {
+                SwitchNextTextFile();
+            }
             PlayerMove.ISMove = true;
             index = 0;
             return;
@@ -70,6 +86,7 @@ public class DialogSystem : MonoBehaviour
             }
         }
     }
+
 
     void GetTextFormFile(TextAsset file)
     {

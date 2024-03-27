@@ -1456,7 +1456,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellTable: {fileID: 0}
-  MakecellContent: {fileID: 0}
   MakeCell_Index: 0
 --- !u!1 &1431842186
 GameObject:
@@ -1651,7 +1650,9 @@ MonoBehaviour:
   textLabel: {fileID: 1783349340}
   faceImage: {fileID: 1769879807}
   textSpeed: 0.1
-  textFile: {fileID: 4900000, guid: ef6d03e3c914f1c488c5b20dcea6ff33, type: 3}
+  textFile_1: {fileID: 4900000, guid: ef6d03e3c914f1c488c5b20dcea6ff33, type: 3}
+  textFile_2: {fileID: 4900000, guid: 89119f81fbd847741938a18bf967cb59, type: 3}
+  textFile_3: {fileID: 4900000, guid: ca1995f343651f94cb8fc004445259c2, type: 3}
   index: 0
   face01: {fileID: 0}
   face02: {fileID: 0}
@@ -2651,7 +2652,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1813940880
 Transform:
   m_ObjectHideFlags: 0

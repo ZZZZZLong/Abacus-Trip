@@ -9,6 +9,7 @@ public class MakeMoodCell : MonoBehaviour,IPointerClickHandler
 {
     int MakeCell_Index;
     public int MoodId;
+    public Transform Mood_Name;
 
     void Awake()
     {
@@ -23,6 +24,7 @@ public class MakeMoodCell : MonoBehaviour,IPointerClickHandler
     {
         MoodId = i;//得到物品的信息
         Debug.Log(MoodId);
+        Mood_Name.GetComponent<Text>().text = GameManager.Instance.cellTable.DataList[MakeCell_Index].name;//为text赋值
 
         Image image = this.transform.GetComponent<Image>();
         if (image != null)
