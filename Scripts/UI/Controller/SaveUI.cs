@@ -25,12 +25,23 @@ namespace SaveSystemTutorial
 
         void Awake()
         {
-            EventCenter.Instance.AddEventListener<Button>("GetSave", GetSave);
-            EventCenter.Instance.AddEventListener<Button>("GetButton", GetButton);
+
             if (Sbtn1 != null)
                 Sbtn1.onClick.AddListener(() => OverSaveBtn());
             if (Sbtn2 != null)
                 Sbtn2.onClick.AddListener(() => LoadBtn());
+        }
+
+        private void Start()
+        {
+            EventCenter.Instance.AddEventListener<Button>("GetSave", GetSave);
+            EventCenter.Instance.AddEventListener<Button>("GetButton", GetButton);
+        }
+
+        private void OnDestroy()
+        {
+            EventCenter.Instance.RemoveEventListener<Button>("GetSave", GetSave);
+            EventCenter.Instance.RemoveEventListener<Button>("GetButton", GetButton);
         }
         void GetButton(Button GBtn)
         {
@@ -61,7 +72,7 @@ namespace SaveSystemTutorial
 
         public void Save_BtnName(string Btn)
         {
-            playerData = GameObject.Find("Player").transform.GetChild(0).GetComponent<PlayerData>();
+            playerData = GameObject.Find("Player").GetComponent<PlayerData>();
             playerData.Save(Btn);
         }
 

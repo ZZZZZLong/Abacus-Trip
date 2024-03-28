@@ -24,8 +24,16 @@ public class MakeMoodCell : MonoBehaviour,IPointerClickHandler
     {
         MoodId = i;//得到物品的信息
         Debug.Log(MoodId);
-        Mood_Name.GetComponent<Text>().text = GameManager.Instance.cellTable.DataList[MakeCell_Index].name;//为text赋值
+        if(GameManager.Instance.cellTable.DataList.Count == 1)
+        {
+            Mood_Name.GetComponent<Text>().text = GameManager.Instance.cellTable.DataList[0].name;
+        }
+        else
+        {
+            Mood_Name.GetComponent<Text>().text = GameManager.Instance.cellTable.DataList[MakeCell_Index].name; //为text赋值
 
+        }
+       
         Image image = this.transform.GetComponent<Image>();
         if (image != null)
         {

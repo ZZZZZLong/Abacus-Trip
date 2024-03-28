@@ -12,15 +12,15 @@ public class Cell : MonoBehaviour, IPointerClickHandler
     CellDetail detail;
     void Awake()
     {
-        index = this.transform.GetSiblingIndex();//知道自己在子物体中是第几个
-        Transform DetailPanel = this.transform.parent.parent.parent.parent.Find("DetailPanel");
+        index = transform.GetSiblingIndex();//知道自己在子物体中是第几个
+        Transform DetailPanel = transform.parent.parent.parent.parent.Find("DetailPanel");
         detail = DetailPanel.GetComponent<CellDetail>();
         //GetMood();
     }
 
     public void GetMood()
     {
-        this.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(GameManager.Instance.cellTable.DataList[index].imagePath);
+        transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(GameManager.Instance.cellTable.DataList[index].imagePath);
     }
 
     public void OnPointerClick(PointerEventData eventData)

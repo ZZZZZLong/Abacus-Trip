@@ -8,24 +8,30 @@ public class LoadManager : Singleton_Mono<LoadManager>
 {
     public GameObject LoadScreen;
     public Slider slider;
+    public string sceneName;
     PlayerData playerData;
     //差背包
     private void Awake()
     {
-        
+        GameManager.Instance.GetPlayer();//使任何场景都需要一个Data来存数据
+        playerData = GameObject.Find("Player").GetComponent<PlayerData>();
+
     }
     public void LoadNextLevel()
     {
+        EventCenter.Instance.clear();
         StartCoroutine(LoadLevel());
     }
 
     public void BackPrevious()
     {
+        EventCenter.Instance.clear();
         StartCoroutine(LoadPrevious());
     }
 
     public void LoadCurrent(string name)
     {
+        EventCenter.Instance.clear();
         StartCoroutine(LoadCurrentScene(name));
     }
 
@@ -33,15 +39,12 @@ public class LoadManager : Singleton_Mono<LoadManager>
     {
         LoadScreen.SetActive(true);
         UIManager.Instance.panelDict.Clear();//将Panel字典里缓存的UI清空
-        AsyncOperation OPR = SceneManager.LoadSceneAsync("SampleScene");
+        //在这就要读取存档里的信息了
+        sceneName = playerData.LoadScene_Name(name);
+        Debug.Log(sceneName);
+        AsyncOperation OPR = SceneManager.LoadSceneAsync(sceneName);// 在json里面存入场景名字，加载的时候看存档中场景名字加载场景
         OPR.allowSceneActivation = false;
-        
-        
-        GameManager.Instance.SetPlayerPos(name);
-        GameManager.Instance.InitPackage(name);
-        //Set背包在GameManager设置函数
-        
-        
+
         while (!OPR.isDone)
         {
             slider.value = OPR.progress;
@@ -50,6 +53,7 @@ public class LoadManager : Singleton_Mono<LoadManager>
             {
                 slider.value = 1;
                 OPR.allowSceneActivation = true;
+                GameManager.Instance.GetFileName(name);
             }
             yield return null;
         }
@@ -57,7 +61,6 @@ public class LoadManager : Singleton_Mono<LoadManager>
 
     IEnumerator LoadPrevious()//返回主菜单
     {
-        GameManager.playerPosition = new Vector2(1.5f, 0);
         LoadScreen.SetActive(true);
         UIManager.Instance.panelDict.Clear();//将Panel字典里缓存的UI清空
         AsyncOperation OPR = SceneManager.LoadSceneAsync("Start");
@@ -82,11 +85,11 @@ public class LoadManager : Singleton_Mono<LoadManager>
     {
         LoadScreen.SetActive(true);
         
-        AsyncOperation OPR = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        AsyncOperation OPR = SceneManager.LoadSceneAsync("SampleScene");
 
         OPR.allowSceneActivation = false;
         GameManager.Instance.cellTable.DataList.Clear();//开始新游戏时清空
-
+        //在这里添加初始需要的物品 目前没有
         while (!OPR.isDone)
         {
             slider.value = OPR.progress;

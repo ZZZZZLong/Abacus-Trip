@@ -15,16 +15,17 @@ public class DialogSystem : MonoBehaviour
 
 
     [Header("文本文件")]
-    TextAsset textFile;
+    public TextAsset textFile;
     public TextAsset textFile_1;
     public TextAsset textFile_2;
     public TextAsset textFile_3;
+    public TextAsset textFile_4;
 
     public int index;
 
     [Header("头像")]
     public Sprite face01, face02;
-
+    public GameObject NPC_name;//与之对话的NPC名字
 
     List<string> textList = new List<string>();
 
@@ -32,8 +33,7 @@ public class DialogSystem : MonoBehaviour
     {
         textFile = textFile_1;//初始化
         //设置事件 当触发后切换文本，主要针对剧情SwitchTextFile(textFile_2);带参数事件
-        EventCenter.Instance.AddEventListener("KeyDia", SwitchKeyTextFile);
-        
+        EventCenter.Instance.AddEventListener<string>("KeyDia", SwitchKeyTextFile);
     }
     private void OnEnable()
     {
@@ -47,11 +47,14 @@ public class DialogSystem : MonoBehaviour
         //Debug.Log("切换对话为下一个普通对话");
     }
 
-    void SwitchKeyTextFile()
+    void SwitchKeyTextFile(string Name)
     {
-        textFile = textFile_2;
+        if (NPC_name.name == Name)//在这添加需要改变对话的npcname
+        {
+            textFile = textFile_2;
+        }
         Debug.Log("切换对话为关键剧情对话对话");
-
+        textFile_3 = textFile_4;//特殊对话之后切换另一个普通对话文本
     }
     
 

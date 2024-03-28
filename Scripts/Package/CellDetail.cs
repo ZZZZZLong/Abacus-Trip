@@ -10,6 +10,7 @@ public class CellDetail : MonoBehaviour
     private Transform UIIcon;
     private Transform UITitle;
     public GameObject UseButton;
+    GameObject NPC;
     int Mood_i;
 
     void Awake()
@@ -39,12 +40,11 @@ public class CellDetail : MonoBehaviour
     {
         Debug.Log(GameManager.Instance.cellTable.DataList[Mood_i].name);//在这使用函数触发事件
         string Mood_name = GameManager.Instance.cellTable.DataList[Mood_i].name;
+        UIManager.Instance.ClosePanel(UIConst.PackageCon);
+        PlayerMove.ISMove = true;
         if (Mood_name == "木材兄弟的兄弟的兄弟")//在这添加物品事件
         {
-            EventCenter.Instance.EventTrigger("KeyDia");
-            UIManager.Instance.ClosePanel(UIConst.PackageCon);
-            EventCenter.Instance.EventTrigger("ShowBtn");
-            EventCenter.Instance.EventTrigger("ShowDia");
+            EventCenter.Instance.EventTrigger("ShowDia","NPC1");
         }
     }
 
