@@ -85,7 +85,7 @@ public class LoadManager : Singleton_Mono<LoadManager>
     {
         LoadScreen.SetActive(true);
         
-        AsyncOperation OPR = SceneManager.LoadSceneAsync("SampleScene");
+        AsyncOperation OPR = SceneManager.LoadSceneAsync("Scene_1");
 
         OPR.allowSceneActivation = false;
         GameManager.Instance.cellTable.DataList.Clear();//开始新游戏时清空

@@ -82,6 +82,7 @@ public class UIManager : Singleton<UIManager>
         GameObject panelObject = GameObject.Instantiate(panelPrefab , UIRoot ,false);
         panel = panelObject.GetComponent<BasePanel>();
         panelDict.Add(name, panel);
+        Debug.Log(name);
         panel.OpenPanel(name);
         Canvas panelCavas = panelObject.GetComponent<Canvas>();
         panelCavas.sortingOrder = sortingOrder;
@@ -117,7 +118,8 @@ public class UIManager : Singleton<UIManager>
             {UIConst.Setting,"UI/Setting" },
             {UIConst.Baocun,"UI/Baocun" },
             {UIConst.Duqu,"UI/Duqu" },
-            {UIConst.MakeUI,"UI/MakeUI" }
+            {UIConst.MakeUI,"UI/MakeUI" },
+            {UIConst.NewMood,"UI/NewMood" }
         };
     }
 }
@@ -130,4 +132,5 @@ public class UIConst
     public const string Baocun = "Baocun";
     public const string Duqu = "Duqu";
     public const string MakeUI = "MakeUI";
+    public const string NewMood = "NewMood";
 }

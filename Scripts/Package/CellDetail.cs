@@ -42,7 +42,7 @@ public class CellDetail : MonoBehaviour
         string Mood_name = GameManager.Instance.cellTable.DataList[Mood_i].name;
         UIManager.Instance.ClosePanel(UIConst.PackageCon);
         PlayerMove.ISMove = true;
-        if (Mood_name == "木材兄弟的兄弟的兄弟")//在这添加物品事件
+        if (Mood_name == "推车")//在这添加物品事件
         {
             EventCenter.Instance.EventTrigger("ShowDia","NPC1");
         }

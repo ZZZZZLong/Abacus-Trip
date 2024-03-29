@@ -12,6 +12,7 @@ public class DialogSystem : MonoBehaviour
 
     bool textFinished;
     bool cancelTyping;
+    bool isDes;
 
 
     [Header("文本文件")]
@@ -24,7 +25,7 @@ public class DialogSystem : MonoBehaviour
     public int index;
 
     [Header("头像")]
-    public Sprite face01, face02;
+    public Sprite face01, face02, face03;
     public GameObject NPC_name;//与之对话的NPC名字
 
     List<string> textList = new List<string>();
@@ -34,6 +35,7 @@ public class DialogSystem : MonoBehaviour
         textFile = textFile_1;//初始化
         //设置事件 当触发后切换文本，主要针对剧情SwitchTextFile(textFile_2);带参数事件
         EventCenter.Instance.AddEventListener<string>("KeyDia", SwitchKeyTextFile);
+        isDes = false;
     }
     private void OnEnable()
     {
@@ -43,7 +45,10 @@ public class DialogSystem : MonoBehaviour
     }
     void SwitchNextTextFile()
     {
-        textFile = textFile_3;
+        if(textFile_3 != null)
+        {
+            textFile = textFile_3;
+        }
         //Debug.Log("切换对话为下一个普通对话");
     }
 
@@ -70,6 +75,10 @@ public class DialogSystem : MonoBehaviour
             }
             PlayerMove.ISMove = true;
             index = 0;
+            if(isDes == true)
+            {
+                NPC_name.SetActive(false);//不需要的npc隐藏
+            }
             return;
         }
         if(Input.GetKeyDown(KeyCode.Space) && textFinished) 
@@ -117,6 +126,19 @@ public class DialogSystem : MonoBehaviour
                 break;
             case"B":
                 faceImage.sprite = face02;
+                index++;
+                break;
+            case"C":
+                faceImage.sprite = face03;
+                index++;
+                break;
+            case"W":
+                CellLocalData.Instance.addMood(1, "木材", "烧火？还可以用来做什么呢？", "Package/Wood");
+                index++;
+                break;
+
+            case"E":
+                isDes = true;
                 index++;
                 break;
 

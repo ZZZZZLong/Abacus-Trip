@@ -30,8 +30,27 @@ public class WoodAdd : MonoBehaviour
         {
             Button.SetActive(false);
             //talkUI.SetActive(true);//拾取物品提示
-            CellLocalData.Instance.addMood(1, "木材", "烧火？还可以用来做什么呢？", "Package/Wood");
+            CellLocalData.Instance.addMood(2, "绳子", "可以用来做推车的物品", "Package/String");
             Debug.Log("物品数量为：" + GameManager.Instance.cellTable.DataList.Count);
+            BoxCollider2D collider = GetComponent<BoxCollider2D>();
+            UIManager.Instance.OpenPanel(UIConst.NewMood);
+            StartCoroutine(CloseTip());
+            // 检查是否找到了碰撞体组件
+            if (collider != null)
+            {
+                // 禁用碰撞体
+                collider.enabled = false;
+            }
+            else
+            {
+                Debug.LogWarning("对象没有碰撞体组件！");
+            }
+
         }
+    }
+    IEnumerator CloseTip()
+    {
+        yield return new WaitForSeconds(1);
+        UIManager.Instance.ClosePanel(UIConst.NewMood);
     }
 }

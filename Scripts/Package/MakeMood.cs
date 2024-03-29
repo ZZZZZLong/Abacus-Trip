@@ -31,7 +31,6 @@ public class MakeMood : MonoBehaviour
         MakeMoodCell MC_2 = MakeCell_2.GetComponent<MakeMoodCell>();
         id_1 = MC_1.MoodId;
         id_2 = MC_2.MoodId;
-        Debug.Log(id_1 + id_2);
         MakeMoodBtn_Way(id_1, id_2);
     }
 
@@ -39,14 +38,15 @@ public class MakeMood : MonoBehaviour
     {
         if(x==1 && y==2)
         {
-            CellLocalData.Instance.addMood(4, "木材兄弟的兄弟的兄弟", "你得到了隐藏道具！", "Package/Wood");
+            CellLocalData.Instance.addMood(4, "推车", "交给村口农夫吧！", "Package/Car");
             Debug.Log("物品数量为：" + GameManager.Instance.cellTable.DataList.Count);
             ClearCellTable(x, y);
 
             SettingUI();//合成成功后设置UI信息
 
-            Sprite woodSprite = Resources.Load<Sprite>("Package/Wood");
+            Sprite woodSprite = Resources.Load<Sprite>("Package/Car");
             MakeCell_New.GetComponent<Image>().sprite = woodSprite;
+            MakeCell_New.transform.Find("Title").GetComponent<Text>().text = "获得推车！";
         }
         else
         {

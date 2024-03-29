@@ -62,19 +62,34 @@ public class PlayerData : MonoBehaviour
         saveData.SceneName = sceneName;
         Debug.Log(sceneName);
         //存储背包数据
-        saveData.cells = GameManager.Instance.cellTable.DataList;
+        saveData.cells_1 = GameManager.Instance.cellTable_Scene1.DataList;
+        saveData.cells_2 = GameManager.Instance.cellTable_Scene2.DataList;
+        saveData.cells_3 = GameManager.Instance.cellTable_Scene3.DataList;
 
         return saveData;
     }
 
     void LoadData(SaveData saveData)//要读取的数据
     {
-        GameManager.Instance.Player.transform.position = saveData.playerPosition;
-        GameManager.Instance.cellTable.DataList = saveData.cells;
+        //GameManager.Instance.Player.transform.position = saveData.playerPosition;在对话游戏中不好用
+        //GameManager.Instance.cellTable.DataList = saveData.cells;
         //LoadManager.Instance.sceneName = saveData.SceneName;
+        if(saveData.SceneName == "Scene_1")
+        {
+            GameManager.Instance.cellTable.DataList = saveData.cells_1;
+        }
+        else if (saveData.SceneName == "")
+        {
+            GameManager.Instance.cellTable.DataList = saveData.cells_2;
+        }
+        else if (saveData.SceneName == "")
+        {
+            GameManager.Instance.cellTable.DataList = saveData.cells_3;
+        }
+
     }
-    
-    
+
+
     public string LoadScene_Name(string FileName)
     {
         var saveData = SaveSystem.LoadFromJson<SaveData>($"{FileName}.sav");
@@ -91,5 +106,7 @@ class SaveData
     public string Save_Time;
     public string Save_Date;
     public string SceneName;
-    public List<CellTableItem> cells;
+    public List<CellTableItem> cells_1;
+    public List<CellTableItem> cells_2;
+    public List<CellTableItem> cells_3;
 }
