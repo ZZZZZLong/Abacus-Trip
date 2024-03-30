@@ -28,4 +28,22 @@ public class CellLocalData : Singleton_Mono<CellLocalData>
         // 如果需要在添加新项后更新 cellTable，可以调用 UpdateCellTable() 方法
         UpdateCellTable();
     }
+
+    public void RemoveMood(int id)
+    {
+        List<CellTableItem> itemsToRemove = new List<CellTableItem>();
+        foreach (CellTableItem item in GameManager.Instance.cellTable.DataList)
+        {
+            if (item.id == id)
+            {
+                itemsToRemove.Add(item);
+            }
+        }
+
+        // 删除标记的元素
+        foreach (CellTableItem itemToRemove in itemsToRemove)
+        {
+            GameManager.Instance.cellTable.DataList.Remove(itemToRemove);
+        }
+    }
 }

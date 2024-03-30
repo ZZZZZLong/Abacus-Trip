@@ -34,7 +34,7 @@ public class Cell : MonoBehaviour, IPointerClickHandler
         {
             UIManager.Instance.ClosePanel(UIConst.PackageCon);
             MakeMoodCell makeoneCell = MakecellContent.transform.GetChild(MakeCell_Index).GetComponent<MakeMoodCell>();
-            makeoneCell.SetImage(imageComponent_Sprite, GameManager.Instance.cellTable.DataList[index].id);//传一个索引让合成界面知道物品的信息
+            makeoneCell.SetImage(imageComponent_Sprite, index);//传一个索引让合成界面知道物品的信息
         }
     }
 }

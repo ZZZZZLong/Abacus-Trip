@@ -22,15 +22,14 @@ public class MakeMoodCell : MonoBehaviour,IPointerClickHandler
     }
     public void SetImage(Sprite newSprite,int i)
     {
-        MoodId = i;//得到物品的信息
-        Debug.Log(MoodId);
+        MoodId = GameManager.Instance.cellTable.DataList[i].id;//得到物品的信息
         if(GameManager.Instance.cellTable.DataList.Count == 1)
         {
             Mood_Name.GetComponent<Text>().text = GameManager.Instance.cellTable.DataList[0].name;
         }
         else
         {
-            Mood_Name.GetComponent<Text>().text = GameManager.Instance.cellTable.DataList[MakeCell_Index].name; //为text赋值
+            Mood_Name.GetComponent<Text>().text = GameManager.Instance.cellTable.DataList[i].name; //为text赋值
 
         }
        

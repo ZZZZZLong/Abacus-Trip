@@ -46,6 +46,10 @@ public class CellDetail : MonoBehaviour
         {
             EventCenter.Instance.EventTrigger("ShowDia","NPC1");
         }
+        else if (Mood_name == "ˮ")
+        {
+            EventCenter.Instance.EventTrigger("ShowDia","NPC3");
+        }
     }
 
 

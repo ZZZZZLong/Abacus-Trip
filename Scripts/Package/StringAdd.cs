@@ -30,7 +30,7 @@ public class StringAdd : MonoBehaviour
         {
             Button.SetActive(false);
             //talkUI.SetActive(true);//拾取物品提示
-            CellLocalData.Instance.addMood(3, "水", "快去交给王奶奶吧", "Package/Water");
+            CellLocalData.Instance.addMood(2, "绳子", "可以用来做推车的物品", "Package/String");
             Debug.Log("物品数量为：" + GameManager.Instance.cellTable.DataList.Count);
             BoxCollider2D collider = GetComponent<BoxCollider2D>();
 

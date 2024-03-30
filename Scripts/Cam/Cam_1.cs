@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cam : MonoBehaviour
+public class Cam_1 : MonoBehaviour
 {
     public CinemachineVirtualCamera FollowMouseVcam;
 
@@ -12,22 +12,22 @@ public class Cam : MonoBehaviour
     public float targetScreenX_min = 0.1f; // 目标 ScreenX 值
     public float targetScreenX_max = 0.5f;
     public float decreaseSpeed = 0.05f; // 减少速度
-    public bool Direction;
+    public bool isRight;
 
 
     private void Awake()
     {
         cinemachineFraming = FollowMouseVcam.GetCinemachineComponent<CinemachineFramingTransposer>();
-        Direction = true;
+        isRight = true;
     }
 
     void Update()
     {
-        if(Direction)
+        if(isRight)
         {
             GoRight();//在激活后右移动
         }
-        else if (Direction == false)
+        else if (isRight == false)
         {
             GoLeft();//切换后向左移动
         }
@@ -59,6 +59,7 @@ public class Cam : MonoBehaviour
         }
         else if (cinemachineFraming.m_ScreenX == targetScreenX_max)
         {
+            Debug.Log("物体销毁");
             Destroy(gameObject);//在返回初始位置后销毁物体
         }
     }

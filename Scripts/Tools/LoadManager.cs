@@ -31,7 +31,7 @@ public class LoadManager : Singleton_Mono<LoadManager>
 
     public void LoadCurrent(string name)
     {
-        EventCenter.Instance.clear();
+        EventCenter.Instance.clear();//Çå¿ÕËùÓĞ¼àÌı
         StartCoroutine(LoadCurrentScene(name));
     }
 

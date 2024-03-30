@@ -14,8 +14,11 @@ public class GameManager : Singleton_Mono<GameManager>
     public int MakeCell_Index;
     public GameObject Player;
     public string FileName;
+    public bool isCanEnter;
+
     private void Awake()
     {
+        isCanEnter = false;
         MakeCell_Index = 0;
         GetPack();
     }

@@ -36,7 +36,8 @@ public class MakeMood : MonoBehaviour
 
     void MakeMoodBtn_Way(int x, int y)//合成列表
     {
-        if(x==1 && y==2)
+        Debug.Log(x +" "+ y);
+        if((x==1 && y==2) ||(x == 2 && y == 1))
         {
             CellLocalData.Instance.addMood(4, "推车", "交给村口农夫吧！", "Package/Car");
             Debug.Log("物品数量为：" + GameManager.Instance.cellTable.DataList.Count);
