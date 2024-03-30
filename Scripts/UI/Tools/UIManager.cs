@@ -119,7 +119,9 @@ public class UIManager : Singleton<UIManager>
             {UIConst.Baocun,"UI/Baocun" },
             {UIConst.Duqu,"UI/Duqu" },
             {UIConst.MakeUI,"UI/MakeUI" },
-            {UIConst.NewMood,"UI/NewMood" }
+            {UIConst.NewMood,"UI/NewMood" },
+            {UIConst.Block,"UI/Block" },
+            {UIConst.Sure,"UI/Sure" }
         };
     }
 }
@@ -133,4 +135,7 @@ public class UIConst
     public const string Duqu = "Duqu";
     public const string MakeUI = "MakeUI";
     public const string NewMood = "NewMood";
+    public const string Block = "Block";
+    public const string Sure = "Sure";
+
 }

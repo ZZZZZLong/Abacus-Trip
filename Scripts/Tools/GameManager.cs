@@ -14,13 +14,16 @@ public class GameManager : Singleton_Mono<GameManager>
     public int MakeCell_Index;
     public GameObject Player;
     public string FileName;
-    public bool isCanEnter;
+    public bool isCanEnter_1;
+    public bool isCanEnter_2;
 
     private void Awake()
     {
-        isCanEnter = false;
+        isCanEnter_1 = false;
+        isCanEnter_2 = false;
         MakeCell_Index = 0;
         GetPack();
+        Debug.Log("≥ı ºªØ");
     }
 
     public void GetFileName(string Name)

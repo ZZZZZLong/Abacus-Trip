@@ -78,11 +78,11 @@ public class PlayerData : MonoBehaviour
         {
             GameManager.Instance.cellTable.DataList = saveData.cells_1;
         }
-        else if (saveData.SceneName == "")
+        else if (saveData.SceneName == "Scene_2")
         {
             GameManager.Instance.cellTable.DataList = saveData.cells_2;
         }
-        else if (saveData.SceneName == "")
+        else if (saveData.SceneName == "Scene_3")
         {
             GameManager.Instance.cellTable.DataList = saveData.cells_3;
         }

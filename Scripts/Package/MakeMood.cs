@@ -37,7 +37,7 @@ public class MakeMood : MonoBehaviour
     void MakeMoodBtn_Way(int x, int y)//合成列表
     {
         Debug.Log(x +" "+ y);
-        if((x==1 && y==2) ||(x == 2 && y == 1))
+        if((x == 1 && y == 2) ||(x == 2 && y == 1))
         {
             CellLocalData.Instance.addMood(4, "推车", "交给村口农夫吧！", "Package/Car");
             Debug.Log("物品数量为：" + GameManager.Instance.cellTable.DataList.Count);
@@ -48,6 +48,17 @@ public class MakeMood : MonoBehaviour
             Sprite woodSprite = Resources.Load<Sprite>("Package/Car");
             MakeCell_New.GetComponent<Image>().sprite = woodSprite;
             MakeCell_New.transform.Find("Title").GetComponent<Text>().text = "获得推车！";
+        }
+        else if((x == 6 && y == 7) || (x == 7 && y == 6))
+        {
+            CellLocalData.Instance.addMood(8, "算盘", "用它来解决问题吧！", "Package/AB-ICon");
+            ClearCellTable(x, y);
+
+            SettingUI();//合成成功后设置UI信息
+            Sprite woodSprite = Resources.Load<Sprite>("Package/AB-ICon");
+            MakeCell_New.GetComponent<Image>().sprite = woodSprite;
+            MakeCell_New.transform.Find("Title").GetComponent<Text>().text = "获得算盘！";
+            GameManager.Instance.isCanEnter_1 = true;
         }
         else
         {

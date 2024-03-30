@@ -14,10 +14,10 @@ public class PlayerMove : MonoBehaviour
     void Awake()
     {
         Player_anim = GetComponent<Animator>();
-        if(GameManager.Instance.FileName != null )
-        {
-            GameManager.Instance.InitLoad(GameManager.Instance.FileName);
-        }
+        //if(GameManager.Instance.FileName != null )
+        //{
+        //    GameManager.Instance.InitLoad(GameManager.Instance.FileName);
+        //}
         position = transform.position;
     }
     

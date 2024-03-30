@@ -17,10 +17,10 @@ public class LoadManager : Singleton_Mono<LoadManager>
         playerData = GameObject.Find("Player").GetComponent<PlayerData>();
 
     }
-    public void LoadNextLevel()
+    public void LoadNextLevel(string name)
     {
         EventCenter.Instance.clear();
-        StartCoroutine(LoadLevel());
+        StartCoroutine(LoadLevel(name));
     }
 
     public void BackPrevious()
@@ -41,7 +41,8 @@ public class LoadManager : Singleton_Mono<LoadManager>
         UIManager.Instance.panelDict.Clear();//将Panel字典里缓存的UI清空
         //在这就要读取存档里的信息了
         sceneName = playerData.LoadScene_Name(name);
-        Debug.Log(sceneName);
+        GameManager.Instance.GetFileName(sceneName);
+
         AsyncOperation OPR = SceneManager.LoadSceneAsync(sceneName);// 在json里面存入场景名字，加载的时候看存档中场景名字加载场景
         OPR.allowSceneActivation = false;
 
@@ -53,7 +54,7 @@ public class LoadManager : Singleton_Mono<LoadManager>
             {
                 slider.value = 1;
                 OPR.allowSceneActivation = true;
-                GameManager.Instance.GetFileName(name);
+                //GameManager.Instance.GetFileName(name);
             }
             yield return null;
         }
@@ -81,19 +82,19 @@ public class LoadManager : Singleton_Mono<LoadManager>
     }
 
 
-    IEnumerator LoadLevel()//开始新游戏
+    IEnumerator LoadLevel(string name)//开始新游戏
     {
         LoadScreen.SetActive(true);
-        
-        AsyncOperation OPR = SceneManager.LoadSceneAsync("Scene_1");
-
+        GameManager.Instance.GetFileName(name);
+        AsyncOperation OPR = SceneManager.LoadSceneAsync(name);
         OPR.allowSceneActivation = false;
         GameManager.Instance.cellTable.DataList.Clear();//开始新游戏时清空
         //在这里添加初始需要的物品 目前没有
         while (!OPR.isDone)
         {
             slider.value = OPR.progress;
-            if(OPR.progress >= 0.9f)
+            PlayerMove.ISMove = true;//防止ISmove不能为True
+            if (OPR.progress >= 0.9f)
             {
                 slider.value = 1;
                 OPR.allowSceneActivation = true;
@@ -101,6 +102,12 @@ public class LoadManager : Singleton_Mono<LoadManager>
             yield return null;
         }
 
+    }
+
+
+    public void StartNewGame()
+    {
+        LoadNextLevel("Scene_1");
     }
 
 }

@@ -548,7 +548,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1788857532}
         m_TargetAssemblyTypeName: LoadManager, Assembly-CSharp
-        m_MethodName: LoadNextLevel
+        m_MethodName: StartNewGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -940,6 +940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoadScreen: {fileID: 1828774498}
   slider: {fileID: 1525754942}
+  sceneName: 
 --- !u!4 &1788857533
 Transform:
   m_ObjectHideFlags: 0
