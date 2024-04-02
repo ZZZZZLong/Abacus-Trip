@@ -12,8 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec496fca5f334640b6d811596d85958, type: 3}
   m_Name: cellTable_Scene3
   m_EditorClassIdentifier: 
-  DataList:
-  - id: 7
-    name: "\u6728\u73E0\u5B50"
-    description: "\u5C0F\u5B69\u5B50\u7684\u73A9\u5177\uFF0C\u611F\u8C22\u4F60\u6559\u4ED6\u7B97\u5B66"
-    imagePath: Packge/MZ
+  DataList: []

@@ -85,6 +85,7 @@ public class PlayerData : MonoBehaviour
         else if (saveData.SceneName == "Scene_3")
         {
             GameManager.Instance.cellTable.DataList = saveData.cells_3;
+            Debug.Log("∂¡»°¡À");
         }
 
     }

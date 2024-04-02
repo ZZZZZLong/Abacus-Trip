@@ -12,8 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec496fca5f334640b6d811596d85958, type: 3}
   m_Name: cellTable_Scene1
   m_EditorClassIdentifier: 
-  DataList:
-  - id: 0
-    name: "\u4F60\u597D"
-    description: "\u8C22\u8C22"
-    imagePath: Package/Wood
+  DataList: []

@@ -8,7 +8,14 @@ public class SureUI : BasePanel
     {
         if(GameManager.Instance.FileName == "Scene_1")
         {
-            GameManager.Instance.isCanEnter_1 = false;//合成了算盘才可以睡觉
+            GameManager.Instance.isCanEnter_1 = false;//教授
+            GameManager.Instance.isCanEnter_2 = false;//获得书经
+            LoadManager.Instance.LoadNextLevel("Scene_2");
+        }
+        else if (GameManager.Instance.FileName == "Scene_5")
+        {
+            Debug.Log("进入场景3");
+            GameManager.Instance.isCanEnter_1 = false;//合成算盘
             LoadManager.Instance.LoadNextLevel("Scene_3");
         }
         else if(GameManager.Instance.FileName == "Scene_3")

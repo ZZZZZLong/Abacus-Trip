@@ -56,6 +56,11 @@ public class DialogSystem : MonoBehaviour
         {
             EventCenter.Instance.AddEventListener<string>("KeyDiaNPC4", SwitchKeyTextFile);
         }
+        else
+        {
+            Debug.Log("该角色不监听事件");
+        }
+        PlayerMove.ISMove = false;
     }
     private void OnEnable()
     {
@@ -197,7 +202,6 @@ public class DialogSystem : MonoBehaviour
             case "G":
                 PlayerMove.ISMove = true;
                 CellLocalData.Instance.addMood(6, "加工好的木材", "可以用来做算盘", "Package/Wood");
-                CellLocalData.Instance.addMood(7, "木珠子", "小孩子的玩具，感谢你教他算学", "Package/Mz");
                 isDes = true;//木匠销毁
                 index++;
                 break;
@@ -222,6 +226,26 @@ public class DialogSystem : MonoBehaviour
                 index++;
                 break;
 
+            case "Z":
+                LoadManager.Instance.LoadNextLevel("Abacus");
+                index++;
+                break;
+
+            case "M":
+                CellLocalData.Instance.addMood(7, "木珠子", "小孩子的玩具，感谢你教他算学", "Package/Mz");
+                GameManager.Instance.isCanEnter_2 = true;
+                index++;
+                break;
+
+            case "Q":
+                LoadManager.Instance.LoadNextLevel("Abacus2");
+                index++;
+                break;
+
+            case "L":
+                UIManager.Instance.OpenPanel(UIConst.End_1);
+                gameObject.SetActive(false);
+                break;
         }
 
 

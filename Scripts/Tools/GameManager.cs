@@ -25,6 +25,20 @@ public class GameManager : Singleton_Mono<GameManager>
         GetPack();
         Debug.Log("≥ı ºªØ");
     }
+    private void Update()
+    {
+        playerData = GameObject.Find("Player").GetComponent<PlayerData>();
+    }
+
+    public string SceneName()
+    {
+        string sceneName = "Scene_2";
+        if (FileName != null)
+        {
+            sceneName = FileName;
+        }
+        return sceneName;
+    }
 
     public void GetFileName(string Name)
     {

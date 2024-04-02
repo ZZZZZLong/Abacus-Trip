@@ -10,6 +10,7 @@ public class PlayerMove : MonoBehaviour
     Vector2 position;
     bool isMove;
     public static bool ISMove = true;
+    string SceneName;
 
     void Awake()
     {
@@ -24,6 +25,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        SceneName = GameManager.Instance.SceneName();
         Move();
     }
 
@@ -32,17 +34,31 @@ public class PlayerMove : MonoBehaviour
         Player_anim.SetBool("Move", isMove);
         if (Input.GetKey(KeyCode.A) && ISMove)
         {
+            speed = 5f;
             transform.localRotation = Quaternion.Euler(0, 180, 0);
             isMove = true;
-            //if (transform.position.x < -2.01)
-            //{
-            //    speed = 0;
-            //    position.x = -2;
-            //}
-            //else
-            //{
-            //    speed = 10;
-            //}//空气墙笨方法
+            if(SceneName == "Scene_1" || SceneName == "Scene_3"|| SceneName == "Scene_4" || SceneName == "Scene_6")
+            {
+                if (transform.position.x < -2.01)
+                {
+                    speed = 0;
+                    position.x = -2;
+                }
+            }
+            else if(SceneName == "Scene_2" || SceneName == "Scene_5")
+            {
+                if (transform.position.x < -7.01)
+                {
+                    speed = 0;
+                    position.x = -7;
+                }
+            }
+            else
+            {
+                Debug.Log(SceneName);
+            }
+
+
 
 
             position.x -= speed * Time.deltaTime;
@@ -50,10 +66,32 @@ public class PlayerMove : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.D) && ISMove)
         {
+            speed = 5f;
             transform.localRotation = Quaternion.Euler(0, 0, 0);
             isMove = true;
             position.x += speed * Time.deltaTime;
             transform.position = position;
+
+            if (SceneName == "Scene_1" || SceneName == "Scene_3" || SceneName == "Scene_4"|| SceneName == "Scene_6")
+            {
+                if (transform.position.x > 35.01)
+                {
+                    speed = 0;
+                    position.x = 35;
+                }//空气墙
+            }
+            else if (SceneName == "Scene_2"|| SceneName == "Scene_5")
+            {
+                if (transform.position.x > 7.51)
+                {
+                    speed = 0;
+                    position.x = 7.5f;
+                }//空气墙
+            }
+            else
+            {
+                Debug.Log(SceneName);
+            }
         }
         else
         {
