@@ -122,7 +122,11 @@ public class UIManager : Singleton<UIManager>
             {UIConst.NewMood,"UI/NewMood" },
             {UIConst.Block,"UI/Block" },
             {UIConst.Sure,"UI/Sure" },
-            {UIConst.End_1,"UI/End_1" }
+            {UIConst.End_1,"UI/End_1" },
+            {UIConst.Suc,"UI/Suc" },
+            {UIConst.Book,"UI/Book" },
+            {UIConst.Audio,"UI/Audio" },
+            {UIConst.Tech,"UI/Tech" }
         };
     }
 }
@@ -139,5 +143,9 @@ public class UIConst
     public const string Block = "Block";
     public const string Sure = "Sure";
     public const string End_1 = "End_1";
+    public const string Suc = "Suc";
+    public const string Book = "Book";
+    public const string Audio = "Audio";
+    public const string Tech = "Tech";
 
 }

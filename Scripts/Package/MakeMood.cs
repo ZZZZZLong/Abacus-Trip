@@ -27,6 +27,7 @@ public class MakeMood : MonoBehaviour
 
     public void MakeMoodBtn()
     {
+        SoundManager.Instance.PlaySound(Globals.Click_2);
         MakeMoodCell MC_1 = MakeCell_1.GetComponent<MakeMoodCell>();
         MakeMoodCell MC_2 = MakeCell_2.GetComponent<MakeMoodCell>();
         id_1 = MC_1.MoodId;

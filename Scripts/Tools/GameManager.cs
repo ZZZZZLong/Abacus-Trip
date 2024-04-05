@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEditor.PlayerSettings;
+
 
 public class GameManager : Singleton_Mono<GameManager>
 {
@@ -25,6 +23,11 @@ public class GameManager : Singleton_Mono<GameManager>
         GetPack();
         Debug.Log("≥ı ºªØ");
     }
+    private void Start()
+    {
+        SoundManager.Instance.PlayBGM(Globals.BGM_1);
+    }
+
     private void Update()
     {
         playerData = GameObject.Find("Player").GetComponent<PlayerData>();
@@ -32,7 +35,7 @@ public class GameManager : Singleton_Mono<GameManager>
 
     public string SceneName()
     {
-        string sceneName = "Scene_2";
+        string sceneName = "Start";
         if (FileName != null)
         {
             sceneName = FileName;
@@ -42,6 +45,7 @@ public class GameManager : Singleton_Mono<GameManager>
 
     public void GetFileName(string Name)
     {
+        Debug.Log(Name);
         FileName = Name;
     }
 

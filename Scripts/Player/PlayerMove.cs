@@ -29,8 +29,14 @@ public class PlayerMove : MonoBehaviour
         Move();
     }
 
+    public void MoveAudio()
+    {
+        SoundManager.Instance.PlayLoopSound(Globals.Move);
+    }
+
     public void Move()
     {
+        
         Player_anim.SetBool("Move", isMove);
         if (Input.GetKey(KeyCode.A) && ISMove)
         {
@@ -53,14 +59,6 @@ public class PlayerMove : MonoBehaviour
                     position.x = -7;
                 }
             }
-            else
-            {
-                Debug.Log(SceneName);
-            }
-
-
-
-
             position.x -= speed * Time.deltaTime;
             transform.position = position;
         }
@@ -87,10 +85,6 @@ public class PlayerMove : MonoBehaviour
                     speed = 0;
                     position.x = 7.5f;
                 }//¿ÕÆøÇ½
-            }
-            else
-            {
-                Debug.Log(SceneName);
             }
         }
         else

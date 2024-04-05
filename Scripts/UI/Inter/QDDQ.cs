@@ -8,6 +8,7 @@ public class QDDQ : MonoBehaviour
 {
     public void OpenQDDQ(Button button)
     {
+        SoundManager.Instance.PlaySound(Globals.Click_2);
         Transform parent = button.transform.parent.parent;
         GameObject QDDQ = parent.Find("QDDQ").gameObject;
         EventCenter.Instance.EventTrigger<Button>("GetButton", button);
@@ -16,6 +17,7 @@ public class QDDQ : MonoBehaviour
 
     public void CloseQDDQ(GameObject QDDQ)
     {
+        SoundManager.Instance.PlaySound(Globals.Click_2);
         QDDQ.SetActive(false);
     }
 }

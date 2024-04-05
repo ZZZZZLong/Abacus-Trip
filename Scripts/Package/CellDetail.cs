@@ -38,6 +38,7 @@ public class CellDetail : MonoBehaviour
 
     public void UseBtn()
     {
+        SoundManager.Instance.PlaySound(Globals.Click_2);
         Debug.Log(GameManager.Instance.cellTable.DataList[Mood_i].name);//在这使用函数触发事件
         string Mood_name = GameManager.Instance.cellTable.DataList[Mood_i].name;
         UIManager.Instance.ClosePanel(UIConst.PackageCon);

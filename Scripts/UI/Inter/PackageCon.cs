@@ -36,6 +36,7 @@ public class PackageCon : BasePanel
     }
     public void OpenPackage()
     {
+        SoundManager.Instance.PlaySound(Globals.Click_2);
         EventCenter.Instance.EventTrigger("HideBtn");
         PlayerMove.ISMove = false;
         UIManager.Instance.OpenPanel(UIConst.PackageCon);
@@ -43,7 +44,7 @@ public class PackageCon : BasePanel
 
     public void ClosePackage()
     {
-        
+        SoundManager.Instance.PlaySound(Globals.Click_2);
         PlayerMove.ISMove = true;
         UIManager.Instance.ClosePanel(UIConst.PackageCon);
     }

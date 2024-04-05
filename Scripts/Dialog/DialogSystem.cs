@@ -177,8 +177,8 @@ public class DialogSystem : MonoBehaviour
                 break;
 
             case "D":
-                PlayerMove.ISMove = true;
                 Destroy(gameObject);
+                UIManager.Instance.OpenPanel(UIConst.Tech);
                 index++;
                 break;
 
@@ -232,7 +232,7 @@ public class DialogSystem : MonoBehaviour
                 break;
 
             case "M":
-                CellLocalData.Instance.addMood(7, "木珠子", "小孩子的玩具，感谢你教他算学", "Package/Mz");
+                CellLocalData.Instance.addMood(7, "木珠子", "小孩子的玩具，可以用来做算盘的珠子", "Package/Mz");
                 GameManager.Instance.isCanEnter_2 = true;
                 index++;
                 break;

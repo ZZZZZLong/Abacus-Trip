@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditorInternal.Profiling.Memory.Experimental;
+
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -25,6 +23,7 @@ public class Cell : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        SoundManager.Instance.PlaySound(Globals.Click_2);
         MakeCell_Index = GameManager.Instance.MakeCell_Index;
         detail.Refresh(index);
         GameObject clickedObject = eventData.pointerPress;

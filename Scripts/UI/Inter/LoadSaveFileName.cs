@@ -70,7 +70,15 @@ public class LoadSaveFileName : MonoBehaviour
     void LoadFromJson(string FileName)
     {
         var saveData = SaveSystem.LoadFromJson<SaveData>($"{FileName}.sav");
-        LoadData(saveData);
+        if(saveData == null)
+        {
+            Btn_List = null;
+            return;
+        }
+        else
+        {
+            LoadData(saveData);
+        }
     }
 
     void LoadData(SaveData saveData)
@@ -78,6 +86,4 @@ public class LoadSaveFileName : MonoBehaviour
         Time.text = saveData.Save_Time;
         Date.text = saveData.Save_Date;
     }
-
-
 }

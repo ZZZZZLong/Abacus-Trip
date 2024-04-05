@@ -87,6 +87,13 @@ namespace SaveSystemTutorial
         {
             if (Gbtn != null)
             {
+                if(Gbtn.transform.GetChild(1).gameObject.activeSelf)
+                {
+                    Debug.Log("没有存档");
+                    GameObject QDDQ = transform.Find("QDDQ").gameObject;
+                    QDDQ.SetActive(false);
+                    return;
+                }
                 loadManager = GameObject.Find("LoadManager").transform.GetComponent<LoadManager>();
                 loadManager.LoadCurrent(Gbtn.name);//传按钮不用管了
             }

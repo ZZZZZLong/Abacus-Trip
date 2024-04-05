@@ -6,6 +6,7 @@ public class MakeUI : BasePanel
 {
     public void OpenMakeUI()
     {
+        SoundManager.Instance.PlaySound(Globals.Click_2);
         EventCenter.Instance.EventTrigger("HideBtn");
         PlayerMove.ISMove = false;
         UIManager.Instance.OpenPanel(UIConst.MakeUI);
@@ -13,7 +14,7 @@ public class MakeUI : BasePanel
 
     public void CloseMakeUI()
     {
-
+        SoundManager.Instance.PlaySound(Globals.Click_2);
         PlayerMove.ISMove = true;
         UIManager.Instance.ClosePanel(UIConst.MakeUI);
     }

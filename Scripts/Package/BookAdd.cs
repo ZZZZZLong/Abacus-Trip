@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WoodAdd : MonoBehaviour
+public class BookAdd : MonoBehaviour
 {
     public GameObject Button;
 
@@ -30,10 +30,11 @@ public class WoodAdd : MonoBehaviour
         {
             Button.SetActive(false);
             //talkUI.SetActive(true);//拾取物品提示
-            CellLocalData.Instance.addMood(2, "绳子", "可以用来做推车的物品", "Package/String");
+            CellLocalData.Instance.addMood(9, "孙子算法", "鸡兔同笼术曰:上置头，下置足，半其足，以头除足，以足除头，即得", "Package/Book");
             Debug.Log("物品数量为：" + GameManager.Instance.cellTable.DataList.Count);
             BoxCollider2D collider = GetComponent<BoxCollider2D>();
             UIManager.Instance.OpenPanel(UIConst.NewMood);
+            GameManager.Instance.isCanEnter_1 = true;
             StartCoroutine(CloseTip());
             // 检查是否找到了碰撞体组件
             if (collider != null)

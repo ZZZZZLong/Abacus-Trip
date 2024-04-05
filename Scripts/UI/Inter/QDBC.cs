@@ -8,6 +8,7 @@ public class QDBC : MonoBehaviour
     bool isNew;
     public void OpenQDBC(Button button)
     {
+        SoundManager.Instance.PlaySound(Globals.Click_2);
         Transform parent = button.transform.parent.parent;
         GameObject QDBC = parent.Find("QDBC").gameObject;
         GameObject Empty = button.transform.GetChild(1).gameObject;
@@ -34,6 +35,7 @@ public class QDBC : MonoBehaviour
 
     public void CloseQDBC(GameObject QDBC)
     {
+        SoundManager.Instance.PlaySound(Globals.Click_2);
         QDBC.SetActive(false);
 
     }

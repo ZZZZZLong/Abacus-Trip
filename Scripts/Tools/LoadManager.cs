@@ -64,6 +64,8 @@ public class LoadManager : Singleton_Mono<LoadManager>
     IEnumerator LoadPrevious()//返回主菜单
     {
         LoadScreen.SetActive(true);
+        SoundManager.Instance.StopBGM();
+        SoundManager.Instance.PlayBGM(Globals.BGM_1);
         UIManager.Instance.panelDict.Clear();//将Panel字典里缓存的UI清空
         AsyncOperation OPR = SceneManager.LoadSceneAsync("Start");
 
@@ -85,13 +87,10 @@ public class LoadManager : Singleton_Mono<LoadManager>
 
     IEnumerator LoadLevel(string name)//开始指定游戏
     {
-        
         LoadScreen.SetActive(true);
         GameManager.Instance.GetFileName(name);
         AsyncOperation OPR = SceneManager.LoadSceneAsync(name);
         OPR.allowSceneActivation = false;
-        //GameManager.Instance.cellTable.DataList.Clear();//开始游戏时清空
-        //在这里添加初始需要的物品 目前没有
         while (!OPR.isDone)
         {
             slider.value = OPR.progress;
@@ -103,34 +102,46 @@ public class LoadManager : Singleton_Mono<LoadManager>
             }
             yield return null;
         }
-
     }
 
     public void SetInit(string name)
     {
+        SoundManager.Instance.StopBGM();
         Debug.Log(name);
         GameManager.Instance.cellTable.DataList.Clear();
         if (name == "Scene_1")
         {
             GameManager.Instance.isCanEnter_1 = false;
             GameManager.Instance.isCanEnter_2 = false;
+            SoundManager.Instance.PlayBGM(Globals.BGM_2);
         }
         else if (name == "Scene_3")
         {
-            CellLocalData.Instance.addMood(7, "木珠子", "小孩子的玩具，感谢你教他算学", "Package/Mz");//改变赋值
+            CellLocalData.Instance.addMood(7, "木珠子", "小孩子的玩具，可以用来做算盘的珠子", "Package/Mz");//改变赋值
+            CellLocalData.Instance.addMood(9, "孙子算法", "鸡兔同笼术曰:上置头，下置足，半其足，以头除足，以足除头，即得", "Package/Book");
             GameManager.Instance.isCanEnter_1 = false;
             GameManager.Instance.isCanEnter_2 = true;
+            SoundManager.Instance.PlayBGM(Globals.BGM_2);
+        }
+        else if (name == "Scene_4")
+        {
+            Debug.Log("场景五重置了");
+            GameManager.Instance.isCanEnter_1 = false;
+            GameManager.Instance.isCanEnter_2 = true;
+            SoundManager.Instance.PlayBGM(Globals.BGM_2);
         }
         else if (name == "Scene_5")
         {
             Debug.Log("场景五重置了");
             GameManager.Instance.isCanEnter_1 = true;
             GameManager.Instance.isCanEnter_2 = false;
+            SoundManager.Instance.PlayBGM(Globals.BGM_2);
         }
         else if(name == "Abacus")
         {
             GameManager.Instance.isCanEnter_1 = false;
             GameManager.Instance.isCanEnter_2 = false;
+            SoundManager.Instance.PlayBGM(Globals.BGM_1);
         }
     }
 
@@ -139,8 +150,10 @@ public class LoadManager : Singleton_Mono<LoadManager>
 
     public void StartNewGame()
     {
+        SoundManager.Instance.StopBGM();
         GameManager.Instance.cellTable.DataList.Clear();//开始游戏时清空
         LoadNextLevel("Scene_1");
+        SoundManager.Instance.PlayBGM(Globals.BGM_2);
     }
 
 }

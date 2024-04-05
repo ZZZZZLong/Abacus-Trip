@@ -20,8 +20,6 @@ public class SureUI : BasePanel
         }
         else if(GameManager.Instance.FileName == "Scene_3")
         {
-            Debug.Log("进入最终场景");
-
             LoadManager.Instance.LoadNextLevel("Scene_4");
         }
         Debug.Log(GameManager.Instance.FileName);
@@ -30,6 +28,7 @@ public class SureUI : BasePanel
 
     public void CloseSureUI()
     {
+        SoundManager.Instance.PlaySound(Globals.Click_2);
         UIManager.Instance.ClosePanel(UIConst.Sure);
         PlayerMove.ISMove = true;
     }

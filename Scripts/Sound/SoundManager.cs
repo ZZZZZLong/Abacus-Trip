@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +6,20 @@ using UnityEngine;
 public class SoundManager : Singleton_Mono<SoundManager>
 {
     private AudioSource audioSource;
+    public static float Vnum;
 
     private Dictionary<string, AudioClip> dictAudio;
 
     private void Awake()
     {
+        Vnum = 0.5f;
+        audioSource = gameObject.AddComponent<AudioSource>();
         audioSource = GetComponent<AudioSource>();
         dictAudio = new Dictionary<string, AudioClip>();
+    }
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -33,6 +41,7 @@ public class SoundManager : Singleton_Mono<SoundManager>
 
     public void PlayBGM(string name, float volume = 1.0f)
     {
+        audioSource.volume = Vnum;
         audioSource.Stop();
         audioSource.clip = GetAidio(name); 
         audioSource.Play();
@@ -45,15 +54,24 @@ public class SoundManager : Singleton_Mono<SoundManager>
 
     public void PlaySound(string path, float volume = 1.0f)
     {
+        audioSource.volume = Vnum;
         //PlayOneShot函数会使得音频叠加播放
         this.audioSource.PlayOneShot(GetAidio(path), volume);
     }
 
     public void PlaySound(AudioSource audioSource, string path, float volume = 1.0f)
     {
+        audioSource.volume = Vnum;
         audioSource.PlayOneShot(GetAidio(path), volume);
     }
 
+    public void PlayLoopSound(string path, float volume = 1.0f)
+    {
+        audioSource.loop = true;
+        audioSource.volume = Vnum;
+        //PlayOneShot函数会使得音频叠加播放
+        this.audioSource.PlayOneShot(GetAidio(path), volume);
+    }
 
 
 
